@@ -50,9 +50,27 @@
 		(cons
 		  (plus (car tup1) (car tup2))
 		  (tup+ (cdr tup1) (cdr tup2)))))))
+
 (define power
   (lambda(x y)
 	(cond
 	  ((zero? y) 1)
 	  (else
 		(multiple x (power x (sub1 y)))))))
+
+(define firsts (lambda (list)
+  (cond
+    ((null? list) '() )
+    (else
+      (cons (car (car l)) (firsts (cdr l)))))))
+
+(define multisubst
+  (lambda (new old lat)
+    (cond
+      ((null? lat) '())
+      (else
+        (cond
+          ((eq? (car lat) old)
+            (multisubst new old (cons new (cdr lat))))
+          (else
+            (cons (car lat) (multisubst new old (cdr lat)))))))))
