@@ -99,10 +99,12 @@
 (define rempick
   (lambda (n lat)
 	(cond
-	  ((zero? (sub1 n)) (cdr lat))
+	  ((zero? n) lat)
 	  (else
-		(cons (car lat)
-			  (rempick (sub1 n) (cdr lat)))))))
+		(cond
+		  ((one? n) (cdr lat))
+		  (else
+			(cons (car lat) (rempick (sub1 n) (cdr lat)))))))))
 
 (define no-num
   (lambda (lat)
