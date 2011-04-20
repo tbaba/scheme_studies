@@ -148,5 +148,4 @@
 
 (define one?
   (lambda (n)
-	(cond
-	  (else ( zero? (sub1 n))))))
+	(= n 1)))
